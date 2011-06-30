@@ -18,8 +18,7 @@ struct Cmds{
 	char cmdName[256];
 	PF cmd;
 } cmds[] = {{"pf1", testCmd},
-			{"pf1", testCmd},  // 이곳에 함수를 추가하면 됩니다.
-			{"pf2", testCmd}};
+			{"clean", cleanC}};
 
 int parseCommand(char* str, ARGV argv);
 PF getCommander(ARGV argv);
@@ -54,7 +53,7 @@ int parseCommand(char* str, ARGV argv){
 
 // 가장 앞 문자열을 이용하여 일치하는 커맨드를 가져온다.
 PF getCommander(ARGV argv){
-	for( int i=0; i<sizeof(Cmds)/sizeof(cmds); i++)
+	for( int i=0; i<sizeof(cmds)/sizeof(Cmds); i++)
 		if( strcmp(argv[0], cmds[i].cmdName ) == 0 )
 			return cmds[i].cmd;
 	return NULL;
